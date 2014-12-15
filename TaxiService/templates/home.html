@@ -7,10 +7,10 @@
     {% if user.is_authenticated %}
         Hello {{ user.username }} <br />
         Roles: <br/>
-        {% if perms.view_users %}
+        {% if perms.auth.view_users %}
             can view users <br />
         {% endif %}
-        {% if perms.view_rides %}
+        {% if perms.TaxiService.view_rides %}
             can view rides <br />
         {% endif %}
         {% if perms.view_self_car %}

@@ -32,7 +32,9 @@ def logout_user(request):
 def home(request):
     isAdmin = request.user.has_perm('view_users')
 
-    user = request.user.groups
+    user = request.user
+    perms = user.get_all_permissions()
+    isAdmin = user.has_perm('TaxiService.add_car')
     return render_to_response('home.html', RequestContext(request))
 
 
