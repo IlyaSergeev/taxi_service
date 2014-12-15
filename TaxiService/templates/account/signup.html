@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Register | {{ block.super }}{% endblock %}
+
+{% block headline %}<h1>New user registration</h1>{% endblock %}
+
+{% block content %}
+    <form action='' method="POST">
+        {% csrf_token %}
+        <form action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+		    username:
+		    <input type="text" name="username" value="{{ username}}"/><br />
+            email:
+            <input type="email" name="email" value="{{ email }}"><br />
+		    password:
+		    <input type="password" name="password" value="" /><br />
+            confirm password:
+            <input type="password" name="confirm_password" /> <br />
+            <input type="checkbox" name="is_admin" checked="checked"> is admin
+            <br />
+            <input type="checkbox" name="is_driver" unchecked="unchecked"> is driver:
+            <br />
+            <input type="checkbox" name="is_dispatcher"> is dispatcher:
+            <br />
+
+            <input type="submit" value="Sign Up" />
+	    </form>
+    </form>
+{% endblock %}
