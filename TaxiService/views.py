@@ -9,8 +9,8 @@ from TaxiService.permissions import *
 from TaxiService.required_group_test import group_required
 
 def login_user(request):
-    logout(request)
-    username = password = ''
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/home/')
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
@@ -33,6 +33,7 @@ def logout_user(request):
 def home(request):
     return render_to_response('home.html', RequestContext(request))
 
+# TODO redirect to error view
 @group_required('Admins')
 def signup(request):
     if request.POST:
