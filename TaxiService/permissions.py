@@ -6,7 +6,7 @@ from TaxiService.models import Car, Ride, User
 
 #TODO refactoring. Extract all permission creators to disctionary + factory method
 
-def get_permission_or_none(codename):
+def __get_permission_or_none(codename):
     try:
         return Permission.objects.get(codename=codename)
     except Permission.DoesNotExist:
@@ -14,7 +14,7 @@ def get_permission_or_none(codename):
 
 def get_permission_view_users():
     permission_codename = "view_users"
-    permission = get_permission_or_none(permission_codename)
+    permission = __get_permission_or_none(permission_codename)
     if permission is None:
         permission = Permission.objects.create(
             codename = permission_codename,
@@ -25,7 +25,7 @@ def get_permission_view_users():
 
 def get_permission_view_cars():
     permission_codename = "view_cars"
-    permission = get_permission_or_none(permission_codename)
+    permission = __get_permission_or_none(permission_codename)
     if permission is None:
         permission = Permission.objects.create(
             codename = permission_codename,
@@ -36,7 +36,7 @@ def get_permission_view_cars():
 
 def get_permission_view_rides():
     permission_codename = "view_rides"
-    permission = get_permission_or_none(permission_codename)
+    permission = __get_permission_or_none(permission_codename)
     if permission is None:
         permission = Permission.objects.create(
             codename = permission_codename,
@@ -47,7 +47,7 @@ def get_permission_view_rides():
 
 def get_permission_view_self_car():
     permission_codename = "view_self_car"
-    permission = get_permission_or_none(permission_codename)
+    permission = __get_permission_or_none(permission_codename)
     if permission is None:
         permission = Permission.objects.create(
             codename = permission_codename,
