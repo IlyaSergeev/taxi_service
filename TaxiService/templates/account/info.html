@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load utils_extras %}
+
+{% block title %}Register | {{ block.super }}{% endblock %}
+
+{% block headline %}<h1>New user registration</h1>{% endblock %}
+
+{% block content %}
+    username:{{ watching_user.username }}<br />
+    email:{{ watching_user.email }}<br />
+    roles:
+
+    {% if watching_user|has_group:"Admins" %}
+        Admin,
+    {% endif %}
+
+    {% if watching_user|has_group:"Drivers" %}
+        Driver,
+    {% endif %}
+
+    {% if watching_user|has_group:"Dispatchers" %}
+        Dispatcher
+    {% endif %}
+    <br />
+    <a href="{% url 'edit_account' watching_user.id %}">Edit</a>
+{% endblock %}

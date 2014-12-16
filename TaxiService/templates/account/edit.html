@@ -7,7 +7,7 @@
 {% block content %}
     <form action='' method="POST">
         {% csrf_token %}
-        <form action="{% url 'signup' %}" method="post">
+        <form action="{% url 'edit_account' user_id %}" method="post">
             {% csrf_token %}
 		    username:
 		    <input type="text" name="username" value="{{ username}}"/><br />
@@ -24,7 +24,8 @@
             <input type="checkbox" name="is_dispatcher"> is dispatcher:
             <br />
 
-            <input type="submit" value="Sign Up" />
+            <input type="submit" value="Save" />
+            <a href="{% url 'account_info' user_id %}">Cancel</a>
 	    </form>
     </form>
 {% endblock %}
