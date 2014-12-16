@@ -21,7 +21,7 @@ if admin_group is None:
         Permission.objects.get(codename='change_car'),
         Permission.objects.get(codename='delete_car'),
         Permission.objects.get(codename='add_car'),
-        get_view_users_permission(),
+        get_permission_view_users(),
     )
 
 dispatcher_group_name = "Dispatchers"
@@ -33,8 +33,8 @@ if dispatcher_group is None:
         Permission.objects.get(codename='change_ride'),
         Permission.objects.get(codename='delete_ride'),
         Permission.objects.get(codename='add_ride'),
-        get_view_cars_permission(),
-        get_view_rides_permission(),
+        get_permission_view_cars(),
+        get_permission_view_rides(),
     )
 
 
@@ -44,7 +44,7 @@ if driver_group is None:
     driver_group = Group(name = driver_group_name)
     driver_group.save()
     driver_group.permissions.add(
-        get_view_rides_permission(),
-        get_view_self_car_permission(),
+        get_permission_view_rides(),
+        get_permission_view_self_car(),
     )
 
