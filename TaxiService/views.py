@@ -6,6 +6,7 @@ from django.core.context_processors import csrf
 from TaxiService.models import *
 from TaxiService.user_groups import *
 from TaxiService.permissions import *
+from TaxiService.required_group_test import group_required
 
 def login_user(request):
     logout(request)
@@ -30,14 +31,9 @@ def logout_user(request):
 
 
 def home(request):
-    isAdmin = request.user.has_perm('view_users')
-
-    user = request.user
-    perms = user.get_all_permissions()
-    isAdmin = user.has_perm('TaxiService.add_car')
     return render_to_response('home.html', RequestContext(request))
 
-
+@group_required('Admins')
 def signup(request):
     if request.POST:
         password = request.POST['password']
