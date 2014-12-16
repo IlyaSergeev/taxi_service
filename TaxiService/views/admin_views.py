@@ -24,11 +24,11 @@ def signup(request):
         if is_dispatcher:
             new_user.groups.add(get_group_dispatcher())
         new_user.save()
-        return HttpResponseRedirect('/home/')
+        return HttpResponseRedirect('/accounts/')
     return render_to_response('account/signup.html', RequestContext(request))
 
 # TODO NOT IMPLEMENTED
-def users(request):
+def accounts(request):
     users = User.objects.all()
     context = RequestContext(
         request,
@@ -36,4 +36,4 @@ def users(request):
             'users_list' : users,
         }
         )
-    return  render_to_response('users.html', context)
+    return  render_to_response('account/accounts.html', context)

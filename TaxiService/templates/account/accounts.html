@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block headline %}<h1>All users!</h1>{% endblock headline %}
+{% block headline %}<h1>All users</h1>{% endblock headline %}
 {% block content %}
     {% if users_list %}
         <ul>
@@ -11,4 +11,5 @@
     {%  else %}
         No users in system
     {% endif %}
+    <a href="{% url 'signup' %}">Add User</a>
 {%  endblock %}

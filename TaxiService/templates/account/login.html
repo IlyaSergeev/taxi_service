@@ -4,17 +4,17 @@
 
 {% block content %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+	{% if form.errors %}
+		<p>Your username and password didn't match. Please try again.</p>
+	{% endif %}
 
-<form action="{% url 'login' %}" method="post">
+	<form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
+        	<p>Your username and password didn't match. Please try again.</p>
         {% endif %}
 		{% if next %}
-		<input type="hidden" name="next" value="{{ next }}" />
+			<input type="hidden" name="next" value="{{ next }}" />
 		{% endif %}
 		username:
 		<input type="text" name="username" value="{{ username}}" /><br />
