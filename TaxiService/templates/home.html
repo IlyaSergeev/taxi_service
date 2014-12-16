@@ -1,21 +1,11 @@
 {% extends 'base.html' %}
 
-{% block headline %}<h1>Welcome to the Taxi Service!</h1>{% endblock headline %}
+{% block headline %}
+    <h1>Welcome back {{ user.username }}!</h1>
+{% endblock headline %}
 
 {% block content %}
 
-    {% if user.is_authenticated %}
-        Hello {{ user.username }} <br />
-        Roles: <br/>
-        {% if perms.auth.view_users %}
-            can view users <br />
-        {% endif %}
-        {% if perms.TaxiService.view_rides %}
-            can view rides <br />
-        {% endif %}
-        {% if perms.view_self_car %}
-            can view self car <br />
-        {% endif %}
-    {% endif %}
+    Some news here. But bot yet!
 
 {% endblock %}

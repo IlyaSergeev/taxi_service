@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load utils_extras %}
-
 {% block headline %}<h1>All users</h1>{% endblock headline %}
 {% block content %}
     {% if users_list %}
@@ -22,7 +21,7 @@
                         Dispatcher
                     {% endif %}
                     <br/>
-                    <a href="{% url 'edit_account' user.id%}" %}>Edit</a>
+                    <a href="{% url 'edit_account' user.id%}">Edit</a>
                 </li>
                 <br/>
             {% endfor %}

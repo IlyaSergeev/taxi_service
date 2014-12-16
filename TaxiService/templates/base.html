@@ -24,8 +24,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="">Taxi Service</a>
+            {% load utils_extras %}
             {% if user.is_authenticated %}
+                {% if user|has_group:"Admins" %}
+                    <a class="navbar-brand" href="{% url 'accounts' %}">Users</a>
+                {% endif %}
+                {% if user|has_group:"Admins" or user|has_group:"Dispatchers" %}
+                    <a class="navbar-brand" href="{% url 'car_mock' %}">Cars</a>
+                {%  endif %}
+                {% if user|has_group:"Drivers" %}
+                    <a class="navbar-brand" href="{% url 'ride_mock' %}">Rides History</a>
+                {%  endif %}
                 <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
             {% else %}
                 <a class="navbar-brand" href="{% url 'login' %}">Login</a>
