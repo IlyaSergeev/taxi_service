@@ -2,29 +2,47 @@
 
 {% block title %}Register | {{ block.super }}{% endblock %}
 
-{% block headline %}<h1>New user registration</h1>{% endblock %}
+{% block headline %}<h1>Edit user info</h1>{% endblock %}
 
 {% block content %}
     <form action='' method="POST">
         {% csrf_token %}
         <form action="{% url 'edit_account' watching_user.id %}" method="post">
             {% csrf_token %}
-		    username:
-		    <input type="text" name="username" value="{{ watching_user.username}}"/><br />
-            email:
-            <input type="email" name="email" value="{{ watching_user.email }}"><br />
-		    password:
-		    <input type="password" name="password" value="" /><br />
-            confirm password:
-            <input type="password" name="confirm_password" /> <br />
-            <input type="checkbox" name="is_admin" checked="checked">
-            is admin
+            <label>
+		        username:
+		        <input type="text" name="username" value="{{ watching_user.username}}"/>
+            </label>
             <br />
-            <input type="checkbox" name="is_driver" unchecked="unchecked">
-            is driver:
+            <label>
+                email:
+                <input type="email" name="email" value="{{ watching_user.email }}">
+            </label>
             <br />
-            <input type="checkbox" name="is_dispatcher">
-            is dispatcher:
+            <label>
+                new password:
+                <input type="password" name="password" value="" />
+            </label>
+            <br />
+            <label>
+                confirm password:
+                <input type="password" name="confirm_password" />
+            </label>
+            <br />
+            <label>
+                <input type="checkbox" name="is_admin" checked="checked">
+                is admin
+            </label>
+            <br />
+            <label>
+                <input type="checkbox" name="is_driver" unchecked="unchecked">
+                is driver
+            </label>
+            <br />
+            <label>
+                <input type="checkbox" name="is_dispatcher">
+                is dispatcher
+            </label>
             <br />
 
             <input type="submit" value="Save" />
