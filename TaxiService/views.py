@@ -44,11 +44,11 @@ def signup(request):
         is_dispatcher = request.POST.get('is_dispatcher', None)
         new_user = User.objects.create_user(username, email, password)
         if is_admin:
-            new_user.groups.add(admin_group)
+            new_user.groups.add(get_group_admin())
         if is_driver:
-            new_user.groups.add(driver_group)
+            new_user.groups.add(get_group_driver())
         if is_dispatcher:
-            new_user.groups.add(dispatcher_group)
+            new_user.groups.add(get_group_dispatcher())
         new_user.save()
         return HttpResponseRedirect('/home/')
     return render_to_response('account/signup.html', RequestContext(request))
