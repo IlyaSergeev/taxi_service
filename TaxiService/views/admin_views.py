@@ -26,3 +26,14 @@ def signup(request):
         new_user.save()
         return HttpResponseRedirect('/home/')
     return render_to_response('account/signup.html', RequestContext(request))
+
+# TODO NOT IMPLEMENTED
+def users(request):
+    users = User.objects.all()
+    context = RequestContext(
+        request,
+        {
+            'users_list' : users,
+        }
+        )
+    return  render_to_response('users.html', context)
