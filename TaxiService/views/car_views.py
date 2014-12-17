@@ -37,12 +37,11 @@ def create(request):
     return render_to_response('car/create.html', RequestContext(request))
 
 def edit(request, car_id):
+    try:
+        car = Car.objects.get(id=car_id)
+    except Car.DoesNotExist:
+        return Http404
     if request.POST:
-        try:
-            car = Car.objects.get(id=car_id)
-        except Car.DoesNotExist:
-            return Http404
-
         car.brand = request.POST['brand']
         car.model = request.POST['model']
         car.color = request.POST['color']
@@ -50,11 +49,27 @@ def edit(request, car_id):
         # TODO make validation
         car.save()
         return HttpResponseRedirect('/cars/')
-    watching_car = Car.objects.get(id=car_id)
     context = RequestContext(
         request,
         {
-            'watching_car' : watching_car,
+            'watching_car' : car,
         },
     )
     return render_to_response('car/edit.html', context)
+
+def delete(request, car_id):
+    try:
+        car = Car.objects.get(id=car_id)
+    except Car.DoesNotExist:
+        return Http404
+    if request.POST:
+        # TODO refresh driver info
+        car.delete()
+        return HttpResponseRedirect('/cars/')
+    context = RequestContext(
+        request,
+        {
+            'car' : car,
+        },
+    )
+    return render_to_response('car/delete.html', context)

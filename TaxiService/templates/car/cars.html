@@ -14,6 +14,7 @@
                     reg_number:{{ car.reg_number }}
                     <br/>
                     <a href="{% url 'car_edit' car.id %}">Edit</a>
+                    <a href="{% url 'car_delete' car.id %}">Delete</a>
                 </li>
                 <br/>
             {% empty %}

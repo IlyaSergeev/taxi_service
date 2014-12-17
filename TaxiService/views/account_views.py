@@ -26,24 +26,23 @@ def __fill_user_groups(user, request):
 # TODO redirect to error view
 @group_required('Admins')
 def account_edit(request, user_id):
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return Http404
     if request.POST:
         # TODO try password
         password = request.POST['password']
-        try:
-            user = User.objects.get(id=user_id)
-        except User.DoesNotExist:
-            return Http404
         user.username = request.POST['username']
         user.email = request.POST['email']
 
         user = __fill_user_groups(user, request)
         user.save()
         return HttpResponseRedirect('/accounts/')
-    watching_user = User.objects.get(id=user_id)
     context = RequestContext(
         request,
         {
-            'watching_user' : watching_user,
+            'watching_user' : user,
         },
     )
     return render_to_response('account/edit.html', context)
