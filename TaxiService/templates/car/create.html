@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Register | {{ block.super }}{% endblock %}
+{% load utils_extras %}
+{% block headline %}<h1>Edit user info</h1>{% endblock %}
+
+{% block content %}
+    <form action="{% url 'car_create' %}" method="post">
+        {% csrf_token %}
+        <label>
+            brand:
+            <input type="text" name="brand" value="{{ watching_car.brand}}"/>
+        </label>
+        <br />
+        <label>
+            model:
+            <input type="text" name="model" value="{{ watching_car.model }}">
+        </label>
+        <br />
+        <label>
+            color:
+            <input type="text" name="color" value="{{ watching_car.color }}" />
+        </label>
+        <br />
+        <label>
+            number:
+            <input type="text" name="reg_number" value="{{ watching_car.reg_number }}" />
+        </label>
+        <br />
+        <input type="submit" value="Create" />
+        <a href="{% url 'cars' %}">Cancel</a>
+    </form>
+{% endblock %}

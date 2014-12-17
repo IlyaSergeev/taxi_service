@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block headline %}<h1>All cars</h1>{% endblock headline %}
 {% block content %}
-    {% if users_list %}
+    {% if cars_list %}
         <ul>
-            {% for car in carss_list %}
+            {% for car in cars_list %}
                 <li>
                     brand:{{ car.brand }}
                     <br/>
@@ -13,7 +13,7 @@
                     <br/>
                     reg_number:{{ car.reg_number }}
                     <br/>
-                    <a href="{% url 'edit_car' car.id%}">Edit</a>
+                    <a href="{% url 'car_edit' car.id %}">Edit</a>
                 </li>
                 <br/>
             {% empty %}

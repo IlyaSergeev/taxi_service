@@ -5,47 +5,44 @@
 {% block headline %}<h1>New user registration</h1>{% endblock %}
 
 {% block content %}
-    <form action='' method="POST">
+    <form action="{% url 'account_create' %}" method="post">
         {% csrf_token %}
-        <form action="{% url 'account_create' %}" method="post">
-            {% csrf_token %}
-            <label>
-                username:
-                <input type="text" name="username" value=""/>
-            </label>
-            <br />
-            <label>
-                email:
-                <input type="email" name="email" value="">
-            </label>
-            <br />
-            <label>
-		        password:
-		        <input type="password" name="password" value="" />
-            </label>
-            <br />
-            <label>
-                confirm password:
-                <input type="password" name="confirm_password" />
-            </label>
-            <br />
-            <label>
-                <input type="checkbox" name="is_admin">
-                is admin
-            </label>
-            <br />
-            <label>
-                <input type="checkbox" name="is_driver">
-                is driver:
-            </label>
-            <br />
-            <label>
-                <input type="checkbox" name="is_dispatcher">
-                is dispatcher:
-            </label>
-            <br />
-            <input type="submit" value="Create" />
-            <a href="{% url 'accounts' %}">Cancel</a>
-	    </form>
+        <label>
+            username:
+            <input type="text" name="username" value=""/>
+        </label>
+        <br />
+        <label>
+            email:
+            <input type="email" name="email" value="">
+        </label>
+        <br />
+        <label>
+            password:
+            <input type="password" name="password" value="" />
+        </label>
+        <br />
+        <label>
+            confirm password:
+            <input type="password" name="confirm_password" />
+        </label>
+        <br />
+        <label>
+            <input type="checkbox" name="is_admin">
+            is admin
+        </label>
+        <br />
+        <label>
+            <input type="checkbox" name="is_driver">
+            is driver:
+        </label>
+        <br />
+        <label>
+            <input type="checkbox" name="is_dispatcher">
+            is dispatcher:
+        </label>
+        <br />
+        <input type="submit" value="Create" />
+        <a href="{% url 'accounts' %}">Cancel</a>
     </form>
 {% endblock %}

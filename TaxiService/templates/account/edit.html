@@ -5,66 +5,63 @@
 {% block headline %}<h1>Edit user info</h1>{% endblock %}
 
 {% block content %}
-    <form action='' method="POST">
+    <form action="{% url 'account_edit' watching_user.id %}" method="post">
         {% csrf_token %}
-        <form action="{% url 'account_edit' watching_user.id %}" method="post">
-            {% csrf_token %}
-            <label>
-		        username:
-		        <input type="text" name="username" value="{{ watching_user.username}}"/>
-            </label>
-            <br />
-            <label>
-                email:
-                <input type="email" name="email" value="{{ watching_user.email }}">
-            </label>
-            <br />
-            <label>
-                new password:
-                <input type="password" name="password" value="" />
-            </label>
-            <br />
-            <label>
-                confirm password:
-                <input type="password" name="confirm_password" />
-            </label>
-            <br />
-            <label>
-                <input type="checkbox" name="is_admin"
-                       {% if watching_user|has_group:"Admins" %}
-                            checked="checked",
-                       {% else %}
-                            unchecked="unchecked"
-                        {% endif %}
-                        >
-                is admin
-            </label>
-            <br />
-            <label>
-                <input type="checkbox" name="is_driver"
-                        {% if watching_user|has_group:"Drivers" %}
-                            checked="checked",
-                        {% else %}
-                            unchecked="unchecked"
-                        {% endif %}
-                        >
-                is driver
-            </label>
-            <br />
-            <label>
-                <input type="checkbox" name="is_dispatcher"
-                        {% if watching_user|has_group:"Dispatchers" %}
-                            checked="checked",
-                       {% else %}
-                            unchecked="unchecked"
-                        {% endif %}
-                        >
-                is dispatcher
-            </label>
-            <br />
+        <label>
+            username:
+            <input type="text" name="username" value="{{ watching_user.username}}"/>
+        </label>
+        <br />
+        <label>
+            email:
+            <input type="email" name="email" value="{{ watching_user.email }}">
+        </label>
+        <br />
+        <label>
+            new password:
+            <input type="password" name="password" value="" />
+        </label>
+        <br />
+        <label>
+            confirm password:
+            <input type="password" name="confirm_password" />
+        </label>
+        <br />
+        <label>
+            <input type="checkbox" name="is_admin"
+                   {% if watching_user|has_group:"Admins" %}
+                        checked="checked",
+                   {% else %}
+                        unchecked="unchecked"
+                    {% endif %}
+                    >
+            is admin
+        </label>
+        <br />
+        <label>
+            <input type="checkbox" name="is_driver"
+                    {% if watching_user|has_group:"Drivers" %}
+                        checked="checked",
+                    {% else %}
+                        unchecked="unchecked"
+                    {% endif %}
+                    >
+            is driver
+        </label>
+        <br />
+        <label>
+            <input type="checkbox" name="is_dispatcher"
+                    {% if watching_user|has_group:"Dispatchers" %}
+                        checked="checked",
+                   {% else %}
+                        unchecked="unchecked"
+                    {% endif %}
+                    >
+            is dispatcher
+        </label>
+        <br />
 
-            <input type="submit" value="Save" />
-            <a href="{% url 'accounts' %}">Cancel</a>
-	    </form>
+        <input type="submit" value="Save" />
+        <a href="{% url 'accounts' %}">Cancel</a>
     </form>
 {% endblock %}

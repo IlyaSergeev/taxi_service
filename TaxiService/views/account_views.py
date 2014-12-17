@@ -20,7 +20,7 @@ def __fill_user_groups(user, request):
     __add_group_if_flag(user, is_admin, get_group_admin())
     __add_group_if_flag(user, is_driver, get_group_driver())
     __add_group_if_flag(user, is_dispatcher, get_group_dispatcher())
-    
+
     return user
 
 # TODO redirect to error view
@@ -29,7 +29,6 @@ def account_edit(request, user_id):
     if request.POST:
         # TODO try password
         password = request.POST['password']
-
         try:
             user = User.objects.get(id=user_id)
         except User.DoesNotExist:
