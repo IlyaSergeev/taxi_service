@@ -15,13 +15,13 @@ urlpatterns = patterns('',
 
     url(r'^cars/$', car_views.cars, name='cars'),
     url(r'^cars/create/$', car_views.create, name='car_create'),
-    url(r'^cars/(?P<car_id>\d+)/$', car_views.mock, name='car_info'),
+    url(r'^cars/(?P<car_id>\d+)/$', car_views.info, name='car_info'),
     url(r'^cars/(?P<car_id>\d+)/delete/$', car_views.delete, name='car_delete'),
     url(r'^cars/(?P<car_id>\d+)/edit/$', car_views.edit, name='car_edit'),
-    url(r'^cars/(?P<car_id>\d+)/rides/$', car_views.mock, name='car_rides'),
-    url(r'^cars/(?P<car_id>\d+)/rides/create/$', car_views.mock, name='car_ride_create'),
+    url(r'^cars/(?P<car_id>\d+)/rides/$', ride_views.mock1, name='car_rides'),
+    url(r'^cars/(?P<car_id>\d+)/rides/create/$', ride_views.mock1, name='car_ride_create'),
     url(r'^cars/my/$', car_views.mock, name='my_car'),
 
-    url(r'^rides/(?P<ride_id>\d+/)/$', ride_views.mock, name='ride_info'),
-    url(r'^rides/(?P<ride_id>\d+/)/edit/$', ride_views.mock, name='ride_edit'),
+    url(r'^rides/(?P<ride_id>\d+/)/$', ride_views.mock1, name='ride_info'),
+    url(r'^rides/(?P<ride_id>\d+/)/edit/$', ride_views.mock1, name='ride_edit'),
 )

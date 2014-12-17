@@ -6,3 +6,6 @@ from django.template import RequestContext
 
 def mock(request):
     return render_to_response('ride/mock.html', RequestContext(request))
+
+def mock1(request, car_id):
+    return render_to_response('ride/mock.html', RequestContext(request))

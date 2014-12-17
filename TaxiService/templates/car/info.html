@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load utils_extras %}
+
+{% block headline %}<h1>Car info</h1>{% endblock %}
+
+{% block content %}
+    brand:{{ car.brand }}
+    <br/>
+    model:{{ car.model }}
+    <br/>
+    color:{{ car.color }}
+    <br/>
+    reg_number:{{ car.reg_number }}
+    <br/>
+    <a href="{% url 'car_edit' car.id %}">Edit</a>
+    <a href="{% url 'car_delete' car.id %}">Delete</a>
+    <a href="{% url 'car_rides' car.id %}">Rides</a>
+{% endblock %}

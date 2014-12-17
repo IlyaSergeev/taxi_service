@@ -73,3 +73,16 @@ def delete(request, car_id):
         },
     )
     return render_to_response('car/delete.html', context)
+
+def info(request, car_id):
+    try:
+        car = Car.objects.get(id=car_id)
+    except Car.DoesNotExist:
+        return Http404
+    context = RequestContext(
+    request,
+        {
+            'car' : car,
+        },
+    )
+    return render_to_response('car/info.html', context)
