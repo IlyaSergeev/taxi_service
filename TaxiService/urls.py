@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^accounts/(?P<user_id>\d+)/$', account_views.account_info, name='account_info'),
     url(r'^accounts/(?P<user_id>\d+)/edit/$', account_views.account_edit, name='account_edit'),
     url(r'^accounts/$', account_views.accounts, name='accounts'),
+    url(r'^accounts/(?P<user_id>\d+)/delete$', account_views.delete, name='account_delete'),
 
     url(r'^cars/$', car_views.cars, name='cars'),
     url(r'^cars/create/$', car_views.create, name='car_create'),

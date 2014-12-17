@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load utils_extras %}
+
+{% block headline %}<h1>Do you want to delete user?</h1>{% endblock %}
+
+{% block content %}
+    <form action="{% url 'account_delete' watching_user.id %}" method="post">
+        {% csrf_token %}
+        username:{{ watching_user.username }}<br />
+        email:{{ watching_user.email }}<br />
+        roles:
+
+        {% if watching_user|has_group:"Admins" %}
+            Admin,
+        {% endif %}
+
+        {% if watching_user|has_group:"Drivers" %}
+            Driver,
+        {% endif %}
+
+        {% if watching_user|has_group:"Dispatchers" %}
+            Dispatcher
+        {% endif %}
+        <br/>
+        <input type="submit" value="Delete" />
+    </form>
+{% endblock %}

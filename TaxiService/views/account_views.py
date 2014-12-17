@@ -87,3 +87,21 @@ def accounts(request):
         },
         )
     return  render_to_response('account/accounts.html', context)
+
+@group_required('Admins')
+def delete(request, user_id):
+    try:
+        user = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return Http404
+    if request.POST:
+        # TODO delete tails
+        user.delete()
+        return HttpResponseRedirect('/accounts/')
+    context = RequestContext(
+        request,
+        {
+            'watching_user' : user,
+        },
+    )
+    return render_to_response('account/delete.html', context)

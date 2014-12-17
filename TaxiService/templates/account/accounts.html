@@ -22,6 +22,7 @@
                     {% endif %}
                     <br/>
                     <a href="{% url 'account_edit' user.id %}">Edit</a>
+                    <a href="{% url 'account_delete' user.id %}">Delete</a>
                 </li>
                 <br/>
             {% endfor %}
