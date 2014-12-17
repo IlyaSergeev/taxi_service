@@ -11,7 +11,6 @@ class Car (models.Model):
 # single ride info
 class Ride (models.Model):
     car = models.ForeignKey(Car)
-    driverEmail = models.EmailField()
     fromAddress = models.CharField(max_length=256)    # start address
     toAddress = models.CharField(max_length=256)      # stop address
     date = models.DateTimeField(auto_now_add=True)    # date + time

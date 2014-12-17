@@ -4,15 +4,9 @@ from django.shortcuts import render_to_response
 from TaxiService.required_group_test import group_required
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, Http404
-from TaxiService.models import Car
+from TaxiService.models import Car, Driver
 
-# TODO delete this
-def mock1(request):
-    return render_to_response('car/mock.html', RequestContext(request))
-
-# TODO delete this
-def mock(request, user_id):
-    return render_to_response('car/mock.html', RequestContext(request))
+# TODO add permitions
 
 @group_required('Admins', 'Dispatchers')
 def cars(request):
@@ -86,3 +80,21 @@ def info(request, car_id):
         },
     )
     return render_to_response('car/info.html', context)
+
+# TODO implement this
+def my(request):
+    if (not request.user.is_authenticated()):
+        return Http404
+    try:
+        driver = Driver.objects.get(account=request.user)
+        car = driver.car
+    except Driver.DoesNotExist:
+        car = None
+    context = RequestContext(
+        request,
+        {
+            'car' : car
+        },
+    )
+    return render_to_response('car/info.html', context)
+

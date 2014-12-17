@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block headline %}<h1>All cars</h1>{% endblock headline %}
+{% block content %}
+    {% if cars_list %}
+        <ul>
+            {% for ride in ride_list %}
+                <li>
+                    car: CAR INFO NOT IMPLEMENT
+                    <br/>
+                    from: FROM ADRESS
+                    <br/>
+                    to: TO ADDRESS
+                    <br/>
+                    date: RIDE DATE
+                    <br/>
+                    <a href="{% url 'ride_edit' car.id %}">Edit</a>
+                    <a href="{% url 'ride_delete' car.id %}">Delete</a>
+                </li>
+                <br/>
+            {% empty %}
+                There are no cars in taxi
+            {% endfor %}
+        </ul>
+    {%  else %}
+        There are no cars in taxi
+    {% endif %}
+    <br/>
+    <br/>
+    <a href="{% url 'car_create' %}">Add Car</a>
+{%  endblock %}

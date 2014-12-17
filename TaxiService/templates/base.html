@@ -30,7 +30,7 @@
                     <a class="navbar-brand" href="{% url 'cars' %}">Cars</a>
                 {%  endif %}
                 {% if user|has_group:"Drivers" %}
-                    <a class="navbar-brand" href="{% url 'my_car' %}">Rides History</a>
+                    <a class="navbar-brand" href="{% url 'my_car' %}">My Car</a>
                 {%  endif %}
                 <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
             {% else %}
