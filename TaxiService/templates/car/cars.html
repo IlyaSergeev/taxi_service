@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block headline %}<h1>All cars</h1>{% endblock headline %}
+{% block content %}
+    {% if users_list %}
+        <ul>
+            {% for car in carss_list %}
+                <li>
+                    brand:{{ car.brand }}
+                    <br/>
+                    model:{{ car.model }}
+                    <br/>
+                    color:{{ car.color }}
+                    <br/>
+                    reg_number:{{ car.reg_number }}
+                    <br/>
+                    <a href="{% url 'edit_car' car.id%}">Edit</a>
+                </li>
+                <br/>
+            {% empty %}
+                There are no cars in taxi
+            {% endfor %}
+        </ul>
+    {%  else %}
+        There are no cars in taxi
+    {% endif %}
+    <br/>
+    <br/>
+    <a href="{% url 'car_create' %}">Add Car</a>
+{%  endblock %}

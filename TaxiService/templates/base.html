@@ -30,10 +30,10 @@
                     <a class="navbar-brand" href="{% url 'accounts' %}">Users</a>
                 {% endif %}
                 {% if user|has_group:"Admins" or user|has_group:"Dispatchers" %}
-                    <a class="navbar-brand" href="{% url 'car_mock' %}">Cars</a>
+                    <a class="navbar-brand" href="{% url 'cars' %}">Cars</a>
                 {%  endif %}
                 {% if user|has_group:"Drivers" %}
-                    <a class="navbar-brand" href="{% url 'ride_mock' %}">Rides History</a>
+                    <a class="navbar-brand" href="{% url 'my_car' %}">Rides History</a>
                 {%  endif %}
                 <a class="navbar-brand" href="{% url 'logout' %}">Logout</a>
             {% else %}

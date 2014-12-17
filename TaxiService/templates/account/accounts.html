@@ -21,7 +21,7 @@
                         Dispatcher
                     {% endif %}
                     <br/>
-                    <a href="{% url 'edit_account' user.id%}">Edit</a>
+                    <a href="{% url 'account_edit' user.id%}">Edit</a>
                 </li>
                 <br/>
             {% endfor %}
@@ -29,5 +29,5 @@
     {%  else %}
         No users in system
     {% endif %}
-    <a href="{% url 'create_account' %}">Add User</a>
+    <a href="{% url 'account_create' %}">Add User</a>
 {%  endblock %}

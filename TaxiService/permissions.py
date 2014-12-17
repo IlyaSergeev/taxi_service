@@ -29,7 +29,7 @@ def get_permission_view_cars():
     if permission is None:
         permission = Permission.objects.create(
             codename = permission_codename,
-            name = 'Can view cars',
+            name = 'Can view car',
             content_type = ContentType.objects.get_for_model(Car),
         )
     return permission
@@ -40,7 +40,7 @@ def get_permission_view_rides():
     if permission is None:
         permission = Permission.objects.create(
             codename = permission_codename,
-            name = 'Can view rides',
+            name = 'Can view ride',
             content_type = ContentType.objects.get_for_model(Ride),
         )
     return permission
@@ -51,7 +51,7 @@ def get_permission_view_self_car():
     if permission is None:
         permission = Permission.objects.create(
             codename = permission_codename,
-            name = 'Can view self cars',
+            name = 'Can view self car',
             content_type = ContentType.objects.get_for_model(Car),
         )
     return permission

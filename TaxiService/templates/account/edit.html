@@ -7,7 +7,7 @@
 {% block content %}
     <form action='' method="POST">
         {% csrf_token %}
-        <form action="{% url 'edit_account' watching_user.id %}" method="post">
+        <form action="{% url 'account_edit' watching_user.id %}" method="post">
             {% csrf_token %}
             <label>
 		        username:
