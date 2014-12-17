@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}Register | {{ block.super }}{% endblock %}
-
+{% load utils_extras %}
 {% block headline %}<h1>Edit user info</h1>{% endblock %}
 
 {% block content %}
@@ -30,17 +30,35 @@
             </label>
             <br />
             <label>
-                <input type="checkbox" name="is_admin" checked="checked">
+                <input type="checkbox" name="is_admin"
+                       {% if watching_user|has_group:"Admins" %}
+                            checked="checked",
+                       {% else %}
+                            unchecked="unchecked"
+                        {% endif %}
+                        >
                 is admin
             </label>
             <br />
             <label>
-                <input type="checkbox" name="is_driver" unchecked="unchecked">
+                <input type="checkbox" name="is_driver"
+                        {% if watching_user|has_group:"Drivers" %}
+                            checked="checked",
+                        {% else %}
+                            unchecked="unchecked"
+                        {% endif %}
+                        >
                 is driver
             </label>
             <br />
             <label>
-                <input type="checkbox" name="is_dispatcher">
+                <input type="checkbox" name="is_dispatcher"
+                        {% if watching_user|has_group:"Dispatchers" %}
+                            checked="checked",
+                       {% else %}
+                            unchecked="unchecked"
+                        {% endif %}
+                        >
                 is dispatcher
             </label>
             <br />

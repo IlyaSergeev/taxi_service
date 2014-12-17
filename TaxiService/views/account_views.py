@@ -6,17 +6,21 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
 
+def __add_group_if_flag(user, flag, group):
+    if flag:
+        user.groups.add(group)
+    else:
+        user.groups.remove(group)
+
 def __fill_user_groups(user, request):
     is_admin = request.POST.get('is_admin', None)
     is_driver = request.POST.get('is_driver', None)
     is_dispatcher = request.POST.get('is_dispatcher', None)
 
-    if is_admin:
-        user.groups.add(get_group_admin())
-    if is_driver:
-        user.groups.add(get_group_driver())
-    if is_dispatcher:
-        user.groups.add(get_group_dispatcher())
+    __add_group_if_flag(user, is_admin, get_group_admin())
+    __add_group_if_flag(user, is_driver, get_group_driver())
+    __add_group_if_flag(user, is_dispatcher, get_group_dispatcher())
+    
     return user
 
 # TODO redirect to error view
