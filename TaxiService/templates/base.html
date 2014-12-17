@@ -25,6 +25,7 @@
             {% if user.is_authenticated %}
                 {% if user|has_group:"Admins" %}
                     <a class="navbar-brand" href="{% url 'accounts' %}">Users</a>
+                    <a class="navbar-brand" href="{% url 'drivers' %}">Drivers</a>
                 {% endif %}
                 {% if user|has_group:"Admins" or user|has_group:"Dispatchers" %}
                     <a class="navbar-brand" href="{% url 'cars' %}">Cars</a>

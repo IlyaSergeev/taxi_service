@@ -18,6 +18,7 @@ def cars(request):
     )
     return render_to_response('car/cars.html', context)
 
+@group_required('Admins')
 def create(request):
     if request.POST:
         # TODO make validation
@@ -30,6 +31,7 @@ def create(request):
         return HttpResponseRedirect('/cars/')
     return render_to_response('car/create.html', RequestContext(request))
 
+@group_required('Admins')
 def edit(request, car_id):
     try:
         car = Car.objects.get(id=car_id)
@@ -51,6 +53,7 @@ def edit(request, car_id):
     )
     return render_to_response('car/edit.html', context)
 
+@group_required('Admins')
 def delete(request, car_id):
     try:
         car = Car.objects.get(id=car_id)
@@ -68,6 +71,7 @@ def delete(request, car_id):
     )
     return render_to_response('car/delete.html', context)
 
+@group_required('Admins', 'Dispatchers')
 def info(request, car_id):
     try:
         car = Car.objects.get(id=car_id)
@@ -81,7 +85,6 @@ def info(request, car_id):
     )
     return render_to_response('car/info.html', context)
 
-# TODO implement this
 def my(request):
     if (not request.user.is_authenticated()):
         return Http404

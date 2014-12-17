@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block headline %}<h1>All users</h1>{% endblock headline %}
+{% block content %}
+    <select name="countries" id="countries" class="multiselect" multiple="multiple">
+            <option value="AUT" selected="selected">Austria</option>
+            <option value="DEU" selected="selected">Germany</option>
+            <option value="NLD" selected="selected">Netherlands</option>
+            <option value="USA">United States</option>
+        </select>
+{%  endblock %}

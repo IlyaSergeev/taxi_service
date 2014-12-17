@@ -1,6 +1,6 @@
 from django.conf.urls import  patterns, url
 
-from TaxiService.views import views, account_views, car_views, ride_views
+from TaxiService.views import views, account_views, car_views, ride_views, driver_views
 
 urlpatterns = patterns('',
     url(r'^$', views.home),
@@ -25,4 +25,7 @@ urlpatterns = patterns('',
 
     url(r'^rides/(?P<ride_id>\d+/)/$', ride_views.info, name='ride_info'),
     url(r'^rides/(?P<ride_id>\d+/)/edit/$', ride_views.edit, name='ride_edit'),
+
+    url(r'^drivers/$', driver_views.drivers, name='drivers'),
+    url(r'^drivers/(?P<driver_id>\d+/)/edit$', driver_views.edit, name='driver_edit'),
 )
