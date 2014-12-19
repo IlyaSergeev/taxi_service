@@ -14,8 +14,11 @@
         <br/>
         reg_number:{{ car.reg_number }}
         <br/>
-        <a href="{% url 'car_edit' car.id %}">Edit</a>
-        <a href="{% url 'car_delete' car.id %}">Delete</a>
+
+        {% if user|has_group:"Admins" %}
+            <a href="{% url 'car_edit' car.id %}">Edit</a>
+            <a href="{% url 'car_delete' car.id %}">Delete</a>
+        {% endif %}
         <a href="{% url 'car_rides' car.id %}">Rides</a>
     {% else %}
         No information about this car. May be you have not got a car at all.
