@@ -5,6 +5,7 @@ from TaxiService.required_group_test import group_required
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, Http404
 from TaxiService.models import Car, Driver
+from django.shortcuts import redirect
 
 # TODO add permitions
 
@@ -106,5 +107,6 @@ def my(request):
             'car' : car
         },
     )
+
     return render_to_response('car/info.html', context)
 

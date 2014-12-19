@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^cars/(?P<car_id>\d+)/delete/$', car_views.delete, name='car_delete'),
     url(r'^cars/(?P<car_id>\d+)/edit/$', car_views.edit, name='car_edit'),
     url(r'^cars/(?P<car_id>\d+)/rides/$', ride_views.all_for_car, name='car_rides'),
+    url(r'^cars/(?P<car_id>\d+)/rides/my$', ride_views.all_for_my_car, name='my_car_rides'),
     url(r'^cars/(?P<car_id>\d+)/rides/create/$', ride_views.create, name='car_ride_create'),
     url(r'^cars/my/$', car_views.my, name='my_car'),
 

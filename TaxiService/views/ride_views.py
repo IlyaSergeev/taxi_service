@@ -2,10 +2,11 @@ __author__ = 'hensh'
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from TaxiService.models import Car, Ride
+from TaxiService.models import Car, Ride, Driver
 from django.http import Http404
 from dateutil import parser
 from django.shortcuts import redirect
+from TaxiService.required_group_test import group_required
 
 def __fill_ride_from_post(ride, post):
     address_from = post.get('address_from')
@@ -17,6 +18,7 @@ def __fill_ride_from_post(ride, post):
     return ride
 
 # TODO has problems with setting date to html file (NOW NOT USED)
+@group_required('Dispatchers')
 def edit(request, ride_id):
     try:
         ride = Ride.objects.get(id = ride_id)
@@ -36,6 +38,7 @@ def edit(request, ride_id):
     )
     return render_to_response('ride/edit.html', context)
 
+@group_required('Dispatchers')
 def create(request, car_id):
     try:
         car = Car.objects.get(id = car_id)
@@ -54,12 +57,11 @@ def create(request, car_id):
     )
     return render_to_response('ride/create.html', context)
 
-def all_for_car(request, car_id):
+def __get_rides_for_car(car_id, request):
     try:
         car = Car.objects.get(id = car_id)
     except Car.DoesNotExist:
         return Http404
-
     rides = Ride.objects.filter(car = car).order_by('date')
     context = RequestContext(
         request,
@@ -70,6 +72,21 @@ def all_for_car(request, car_id):
     )
     return render_to_response('ride/rides.html', context)
 
+@group_required('Dispatchers')
+def all_for_car(request, car_id):
+    return __get_rides_for_car(car_id, request)
+
+@group_required('Drivers')
+def all_for_my_car(request, car_id):
+    try:
+        driver = Driver.objects.get(car_id = car_id)
+    except Driver.DoesNotExist:
+        return Http404
+    if driver.account_id != request.user.id:
+        return Http404
+    return __get_rides_for_car(car_id, request)
+
+@group_required('Dispatchers')
 def delete(request, ride_id):
     try:
         ride = Ride.objects.get(id=ride_id)

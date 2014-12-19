@@ -31,5 +31,7 @@
     {%  else %}
         There are no rides for the car
     {% endif %}
-    <a href="{%  url 'car_ride_create' car.id %}">Add ride</a>
+    {% if user|has_group:"Dispatchers" %}
+        <a href="{%  url 'car_ride_create' car.id %}">Add ride</a>
+    {% endif %}
 {%  endblock %}
