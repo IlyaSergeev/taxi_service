@@ -5,7 +5,7 @@ from django.template import RequestContext
 from TaxiService.models import Driver, User, Car
 from TaxiService.required_group_test import group_required
 from TaxiService.user_groups import get_group_driver
-from django.http import HttpResponseRedirect, Http404
+from django.http import Http404
 from django.shortcuts import redirect
 
 class __Driver_info:

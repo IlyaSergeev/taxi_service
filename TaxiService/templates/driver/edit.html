@@ -7,26 +7,28 @@
         user :
         {{ cur_user.username }}
         <br/>
-        cur car :
-        <select name="cars" id="car">
-            {% for car in free_cars %}
+        <label>
+            Current car :
+            <select name="cars" id="car">
+                {% for car in free_cars %}
+                    <option
+                            value="{{ car.id }}"
+                            {% ifequal car.id cur_car.id %}
+                                selected = "selected"
+                            {% endifequal %}
+                            >
+                        {{ car.brand }} {{ car.model }} {{ car.color }} {{ car.reg_number }}
+                    </option>
+                {% endfor %}
                 <option
-                        value="{{ car.id }}"
-                        {% ifequal car.id cur_car.id %}
+                        {% if not cur_car %}
                             selected = "selected"
-                        {% endifequal %}
+                        {% endif %}
                         >
-                    {{ car.brand }} {{ car.model }} {{ car.color }} {{ car.reg_number }}
+                    None
                 </option>
-            {% endfor %}
-            <option
-                    {% if not cur_car %}
-                        selected = "selected"
-                    {% endif %}
-                    >
-                None
-            </option>
-        </select>
+            </select>
+        </label>
         <br/>
         <input type="submit" value="Save" />
         <a href="{% url 'drivers' %}">Cancel</a>

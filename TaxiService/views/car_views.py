@@ -3,9 +3,9 @@ __author__ = 'hensh'
 from django.shortcuts import render_to_response
 from TaxiService.required_group_test import group_required
 from django.template import RequestContext
-from django.http import HttpResponseRedirect, Http404
-from TaxiService.models import Car, Driver
+from django.http import Http404
 from django.shortcuts import redirect
+from TaxiService.models import Car, Driver
 
 # TODO add permitions
 
@@ -29,7 +29,7 @@ def create(request):
         car.color = request.POST['color']
         car.reg_number = request.POST['reg_number']
         car.save()
-        return HttpResponseRedirect('/cars/')
+        return redirect('cars')
     return render_to_response('car/create.html', RequestContext(request))
 
 @group_required('Admins')
@@ -45,7 +45,7 @@ def edit(request, car_id):
         car.reg_number = request.POST['reg_number']
         # TODO make validation
         car.save()
-        return HttpResponseRedirect('/cars/')
+        return redirect('cars')
     context = RequestContext(
         request,
         {
@@ -69,7 +69,7 @@ def delete(request, car_id):
         except:
             pass
         car.delete()
-        return HttpResponseRedirect('/cars/')
+        return redirect('cars')
     context = RequestContext(
         request,
         {

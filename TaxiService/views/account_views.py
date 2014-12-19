@@ -4,8 +4,9 @@ from TaxiService.required_group_test import group_required
 from TaxiService.user_groups import *
 from TaxiService.models import Driver
 from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect, Http404
+from django.http import Http404
 from django.template import RequestContext
+from django.shortcuts import redirect
 
 def __add_group_if_flag(user, flag, group):
     if flag:
@@ -46,8 +47,8 @@ def account_edit(request, user_id):
                 driver.delete()
             except Driver.DoesNotExist:
                 pass
+        return redirect('accounts')
 
-        return HttpResponseRedirect('/accounts/')
     context = RequestContext(
         request,
         {
@@ -106,7 +107,7 @@ def delete(request, user_id):
     if request.POST:
         # TODO delete tails
         user.delete()
-        return HttpResponseRedirect('/accounts/')
+        return redirect('accounts')
     context = RequestContext(
         request,
         {
