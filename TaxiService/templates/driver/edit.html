@@ -2,10 +2,33 @@
 
 {% block headline %}<h1>All users</h1>{% endblock headline %}
 {% block content %}
-    <select name="countries" id="countries" class="multiselect" multiple="multiple">
-            <option value="AUT" selected="selected">Austria</option>
-            <option value="DEU" selected="selected">Germany</option>
-            <option value="NLD" selected="selected">Netherlands</option>
-            <option value="USA">United States</option>
+    <form action="{% url 'driver_edit' cur_user.id %}" method="post">
+        {% csrf_token %}
+        user :
+        {{ cur_user.username }}
+        <br/>
+        cur car :
+        <select name="cars" id="car">
+            {% for car in free_cars %}
+                <option
+                        value="{{ car.id }}"
+                        {% ifequal car.id cur_car.id %}
+                            selected = "selected"
+                        {% endifequal %}
+                        >
+                    {{ car.brand }} {{ car.model }} {{ car.color }} {{ car.reg_number }}
+                </option>
+            {% endfor %}
+            <option
+                    {% if not cur_car %}
+                        selected = "selected"
+                    {% endif %}
+                    >
+                None
+            </option>
         </select>
+        <br/>
+        <input type="submit" value="Save" />
+        <a href="{% url 'drivers' %}">Cancel</a>
+    </form>
 {%  endblock %}
