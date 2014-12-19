@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% load tz %}
+
+{% block headline %}<h1>Create new car</h1>{% endblock %}
+
+{% block content %}
+    <form action="{% url 'car_ride_create' car.id %}" method="post">
+        {% csrf_token %}
+        <label>
+            from:
+            <input type="text" name="address_from" value="{{ ride.fromAddress }}"/>
+        </label>
+        <br />
+        <label>
+            to:
+            <input type="text" name="address_to" value="{{ ride.toAddress }}">
+        </label>
+        <br />
+        <label>
+            date time:
+            {# TODO set 'now' as default value #}
+            <input type="text" name="date" value="{{ ride.date }}"/>
+            {{ ride.date|localtime }}
+        </label>
+        <br />
+        <input type="submit" value="Edit" />
+        <a href="{% url 'car_ride_create' car.id %}">Cancel</a>
+    </form>
+{% endblock %}

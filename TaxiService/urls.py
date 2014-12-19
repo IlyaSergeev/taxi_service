@@ -23,7 +23,8 @@ urlpatterns = patterns('',
     url(r'^cars/(?P<car_id>\d+)/rides/create/$', ride_views.create, name='car_ride_create'),
     url(r'^cars/my/$', car_views.my, name='my_car'),
 
-    url(r'^rides/(?P<ride_id>\d+)/edit/$', ride_views.edit, name='ride_edit'),
+    # TODO has a problem to set date to html, so disable 'edit' function for single ride
+    # url(r'^rides/(?P<ride_id>\d+)/edit/$', ride_views.edit, name='ride_edit'),
     url(r'^rides/(?P<ride_id>\d+)/delete/$', ride_views.delete, name='ride_delete'),
 
     url(r'^accounts/drivers/$', driver_views.drivers, name='drivers'),

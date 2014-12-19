@@ -7,8 +7,34 @@ from django.http import Http404
 from dateutil import parser
 from django.shortcuts import redirect
 
+def __fill_ride_from_post(ride, post):
+    address_from = post.get('address_from')
+    address_to = post.get('address_to')
+    date = parser.parse(post.get('date'))
+    ride.fromAddress = address_from
+    ride.toAddress = address_to
+    ride.date = date
+    return ride
+
+# TODO has problems with setting date to html file (NOW NOT USED)
 def edit(request, ride_id):
-    return render_to_response('ride/edit.html', RequestContext(request))
+    try:
+        ride = Ride.objects.get(id = ride_id)
+    except Ride.DoesNotExist:
+        return Http404
+
+    if request.POST:
+        __fill_ride_from_post(ride, request.POST).save()
+        return redirect('car_rides', ride.car.id)
+
+    context = RequestContext(
+        request,
+        {
+            'car' : ride.car,
+            'ride' : ride,
+        },
+    )
+    return render_to_response('ride/edit.html', context)
 
 def create(request, car_id):
     try:
@@ -17,16 +43,7 @@ def create(request, car_id):
         return Http404
 
     if request.POST:
-        address_from = request.POST.get('address_from')
-        address_to = request.POST.get('address_to')
-        date = parser.parse(request.POST.get('date'))
-        ride = Ride(
-            fromAddress = address_from,
-            toAddress = address_to,
-            date = date,
-            car = car
-        )
-        ride.save()
+        __fill_ride_from_post(Ride(car = car), request.POST).save()
         return redirect('car_rides', car_id)
 
     context = RequestContext(
