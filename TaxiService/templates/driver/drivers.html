@@ -6,16 +6,27 @@
         <ul>
             {% for driver in drivers %}
                 <li>
-                    {{ user }}
-                    <a href="{% url 'account_edit' driver.user.id %}">Edit</a>
+                    <label>
+                        Username: {{ driver.user.username }}
+                    </label>
                     <br/>
-                    {{ driver.driver }}
+                        Car:
+                        {% if driver.driver %}
+                            {{ driver.driver.car.brand }}
+                            {{ driver.driver.car.model }}
+                            {{ driver.driver.car.color }}
+                            {{ driver.driver.car.reg_number }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    <br/>
+                    <a href="{% url 'account_edit' driver.user.id %}">Edit</a>
                 </li>
                 <br/>
             {% endfor %}
         </ul>
     {%  else %}
-        No drivers in 'Drivers' group
+        No user in 'Drivers' group
     {% endif %}
 {%  endblock %}
 

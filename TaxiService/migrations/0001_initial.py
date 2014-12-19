@@ -16,10 +16,10 @@ class Migration(migrations.Migration):
             name='Car',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('brand', models.CharField(max_length=64)),
-                ('model', models.CharField(max_length=64)),
+                ('brand', models.CharField(max_length=64, null=True)),
+                ('model', models.CharField(max_length=64, null=True)),
                 ('color', models.CharField(max_length=64)),
-                ('reg_number', models.CharField(max_length=16)),
+                ('reg_number', models.CharField(unique=True, max_length=16)),
             ],
             options={
             },
@@ -40,7 +40,6 @@ class Migration(migrations.Migration):
             name='Ride',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('driverEmail', models.EmailField(max_length=75)),
                 ('fromAddress', models.CharField(max_length=256)),
                 ('toAddress', models.CharField(max_length=256)),
                 ('date', models.DateTimeField(auto_now_add=True)),

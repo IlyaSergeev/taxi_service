@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 
 # info about car
 class Car (models.Model):
-    brand = models.CharField(max_length=64)
-    model = models.CharField(max_length=64)
+    brand = models.CharField(max_length=64, null=True)
+    model = models.CharField(max_length=64, null=True)
     color = models.CharField(max_length=64)
-    reg_number = models.CharField(max_length=16) # registration number
+    reg_number = models.CharField(max_length=16, unique=True) # registration number
 
 # single ride info
 class Ride (models.Model):
