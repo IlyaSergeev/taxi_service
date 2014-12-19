@@ -8,7 +8,7 @@ from TaxiService.user_groups import get_group_driver
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import redirect
 
-class Driver_info:
+class __Driver_info:
     def __init__(self, user = None, driver = None):
         self.user = user
         self.driver = driver
@@ -23,7 +23,7 @@ def drivers(request):
     users = get_group_driver().user_set.all()
     result = []
     for user in users:
-        result.append(Driver_info(
+        result.append(__Driver_info(
             user = user,
             driver = find_by_user(drivers, user)
         ))

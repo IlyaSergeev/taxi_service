@@ -91,6 +91,7 @@ def info(request, car_id):
     )
     return render_to_response('car/info.html', context)
 
+@group_required('Drivers')
 def my(request):
     if (not request.user.is_authenticated()):
         return Http404
