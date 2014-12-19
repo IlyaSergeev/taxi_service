@@ -2,6 +2,7 @@ __author__ = 'hensh'
 
 from TaxiService.required_group_test import group_required
 from TaxiService.user_groups import *
+from TaxiService.models import Driver
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
@@ -38,6 +39,14 @@ def account_edit(request, user_id):
 
         user = __fill_user_groups(user, request)
         user.save()
+
+        if not request.POST.get('is_driver', None):
+            try:
+                driver = Driver.objects.get(account = user)
+                driver.delete()
+            except Driver.DoesNotExist:
+                pass
+
         return HttpResponseRedirect('/accounts/')
     context = RequestContext(
         request,
