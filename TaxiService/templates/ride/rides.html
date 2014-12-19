@@ -9,21 +9,19 @@
     {{ car.reg_number }}
     <br/>
     <br/>
-    {% if cars_list %}
+    {% if rides %}
         <ul>
-            {% for ride in ride_list %}
+            {% for ride in rides %}
                 <li>
-                    car: CAR INFO NOT IMPLEMENT
+                    from: {{ ride.fromAddress }}
                     <br/>
-                    from: FROM ADRESS
+                    to: {{ ride.toAddress }}
                     <br/>
-                    to: TO ADDRESS
-                    <br/>
-                    date: RIDE DATE
+                    date: {{ ride.date }}
                     <br/>
                     {% if user|has_group:"Dispatchers" %}
-                        <a href="{% url 'ride_edit' car.id %}">Edit</a>
-                        <a href="{% url 'ride_delete' car.id %}">Delete</a>
+                        <a href="{% url 'ride_edit' ride.id %}">Edit</a>
+                        <a href="{% url 'ride_delete' ride.id %}">Delete</a>
                     {% endif %}
                 </li>
                 <br/>

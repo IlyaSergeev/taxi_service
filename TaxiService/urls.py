@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^cars/my/$', car_views.my, name='my_car'),
 
     url(r'^rides/(?P<ride_id>\d+)/edit/$', ride_views.edit, name='ride_edit'),
+    url(r'^rides/(?P<ride_id>\d+)/delete/$', ride_views.delete, name='ride_delete'),
 
     url(r'^accounts/drivers/$', driver_views.drivers, name='drivers'),
     url(r'^drivers/(?P<user_id>\d+)/edit$', driver_views.edit, name='driver_edit'),

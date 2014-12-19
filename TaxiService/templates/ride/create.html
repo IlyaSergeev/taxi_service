@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
+{% load tz %}
+
 {% block headline %}<h1>Create new car</h1>{% endblock %}
 
 {% block content %}
-    <form action="{% url 'car_ride_create' car_id %}" method="post">
+    <form action="{% url 'car_ride_create' car.id %}" method="post">
         {% csrf_token %}
         <label>
             from:
@@ -17,10 +19,11 @@
         <br />
         <label>
             date time:
-            <input type="datetime-local" name="date" value="{{ datetime }}"/>
+            {# TODO set 'now' as default value #}
+            <input type="datetime-local" name="date" value="now"/>
         </label>
         <br />
         <input type="submit" value="Create" />
-        <a href="{% url 'car_ride_create' car_id %}">Cancel</a>
+        <a href="{% url 'car_ride_create' car.id %}">Cancel</a>
     </form>
 {% endblock %}
