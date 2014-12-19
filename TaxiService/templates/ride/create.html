@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block headline %}<h1>Create new car</h1>{% endblock %}
+
+{% block content %}
+    <form action="{% url 'car_ride_create' car_id %}" method="post">
+        {% csrf_token %}
+        <label>
+            from:
+            <input type="text" name="address_from"/>
+        </label>
+        <br />
+        <label>
+            to:
+            <input type="text" name="address_to">
+        </label>
+        <br />
+        <label>
+            date time:
+            <input type="datetime-local" name="date" value="{{ datetime }}"/>
+        </label>
+        <br />
+        <input type="submit" value="Create" />
+        <a href="{% url 'car_ride_create' car_id %}">Cancel</a>
+    </form>
+{% endblock %}

@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-{% block title %}Register | {{ block.super }}{% endblock %}
 {% load utils_extras %}
 {% block headline %}<h1>Create new car</h1>{% endblock %}
 
@@ -9,22 +8,22 @@
         {% csrf_token %}
         <label>
             brand:
-            <input type="text" name="brand" value="{{ watching_car.brand}}"/>
+            <input type="text" name="brand" value=""/>
         </label>
         <br />
         <label>
             model:
-            <input type="text" name="model" value="{{ watching_car.model }}">
+            <input type="text" name="model" value="">
         </label>
         <br />
         <label>
             color:
-            <input type="text" name="color" value="{{ watching_car.color }}" />
+            <input type="text" name="color" value="" />
         </label>
         <br />
         <label>
             number:
-            <input type="text" name="reg_number" value="{{ watching_car.reg_number }}" />
+            <input type="text" name="reg_number" value="" />
         </label>
         <br />
         <input type="submit" value="Create" />

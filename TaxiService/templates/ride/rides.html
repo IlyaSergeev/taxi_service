@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% load utils_extras %}
-{% block headline %}<h1>All cars</h1>{% endblock headline %}
+{% block headline %}<h1>Rides history</h1>{% endblock headline %}
 {% block content %}
+    car:
+    {{ car.brand }}
+    {{ car.model }}
+    {{ car.color }}
+    {{ car.reg_number }}
+    <br/>
+    <br/>
     {% if cars_list %}
         <ul>
             {% for ride in ride_list %}
@@ -21,13 +28,13 @@
                 </li>
                 <br/>
             {% empty %}
-                There are no cars in taxi
+                There are no rides for the car
             {% endfor %}
         </ul>
     {%  else %}
-        There are no cars in taxi
+        There are no rides for the car
     {% endif %}
     <br/>
     <br/>
-    <a href="{% url 'car_create' %}">Add Car</a>
+    <a href="{%  url 'car_ride_create' car.id %}">Add ride</a>
 {%  endblock %}
