@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load utils_extras %}
 {% block headline %}<h1>All cars</h1>{% endblock headline %}
 {% block content %}
     {% if cars_list %}
@@ -13,8 +14,10 @@
                     <br/>
                     date: RIDE DATE
                     <br/>
-                    <a href="{% url 'ride_edit' car.id %}">Edit</a>
-                    <a href="{% url 'ride_delete' car.id %}">Delete</a>
+                    {% if user|has_group:"Dispatchers" %}
+                        <a href="{% url 'ride_edit' car.id %}">Edit</a>
+                        <a href="{% url 'ride_delete' car.id %}">Delete</a>
+                    {% endif %}
                 </li>
                 <br/>
             {% empty %}

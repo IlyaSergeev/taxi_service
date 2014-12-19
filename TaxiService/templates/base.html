@@ -23,6 +23,7 @@
           </button>
             {% load utils_extras %}
             {% if user.is_authenticated %}
+                <a class="navbar-brand" href="{% url 'home' %}">{{ user.username }}</a>
                 {% if user|has_group:"Admins" %}
                     <a class="navbar-brand" href="{% url 'accounts' %}">Users</a>
                     <a class="navbar-brand" href="{% url 'drivers' %}">Drivers</a>
