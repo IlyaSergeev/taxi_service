@@ -60,7 +60,13 @@ def delete(request, car_id):
     except Car.DoesNotExist:
         return Http404
     if request.POST:
-        # TODO refresh driver info
+        # TODO may be can delete driver by cascade, do not know how
+        # TODO make this in single transaction
+        try:
+            driver = Driver.objects.get(car = car)
+            driver.delete()
+        except:
+            pass
         car.delete()
         return HttpResponseRedirect('/cars/')
     context = RequestContext(
