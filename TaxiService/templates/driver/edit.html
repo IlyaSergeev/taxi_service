@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block headline %}<h1>All users</h1>{% endblock headline %}
+{% block headline %}<h1>Select car for user</h1>{% endblock headline %}
 {% block content %}
     <form action="{% url 'driver_edit' cur_user.id %}" method="post">
         {% csrf_token %}
