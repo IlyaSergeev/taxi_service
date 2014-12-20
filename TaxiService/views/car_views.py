@@ -19,6 +19,9 @@ def cars(request):
     )
     return render_to_response('car/cars.html', context)
 
+def __is_car_correct(car):
+    return car.reg_number is not None and car.reg_number is not ''
+
 @group_required('Admins')
 def create(request):
     if request.POST:
@@ -28,8 +31,11 @@ def create(request):
         car.model = request.POST['model']
         car.color = request.POST['color']
         car.reg_number = request.POST['reg_number']
-        car.save()
-        return redirect('cars')
+        if __is_car_correct(car):
+            car.save()
+            return redirect('cars')
+        else:
+            return redirect('car_create')
     return render_to_response('car/create.html', RequestContext(request))
 
 @group_required('Admins')
@@ -43,9 +49,11 @@ def edit(request, car_id):
         car.model = request.POST['model']
         car.color = request.POST['color']
         car.reg_number = request.POST['reg_number']
-        # TODO make validation
-        car.save()
-        return redirect('cars')
+        if __is_car_correct(car):
+            car.save()
+            return redirect('cars')
+        else:
+            return redirect('car_edit', car_id)
     context = RequestContext(
         request,
         {

@@ -17,6 +17,12 @@ def __fill_ride_from_post(ride, post):
     ride.date = date
     return ride
 
+def __is_string_empty(string):
+    return string is None or string is ''
+
+def __is_ride_correct(ride):
+    return not __is_string_empty(ride.fromAddress) and not __is_string_empty(ride.toAddress) and ride.car is not None and ride.date is not None
+
 # TODO has problems with setting date to html file (NOW NOT USED)
 @group_required('Dispatchers')
 def edit(request, ride_id):
@@ -46,8 +52,12 @@ def create(request, car_id):
         return Http404
 
     if request.POST:
-        __fill_ride_from_post(Ride(car = car), request.POST).save()
-        return redirect('car_rides', car_id)
+        ride =__fill_ride_from_post(Ride(car = car), request.POST)
+        if __is_ride_correct(ride):
+            ride.save()
+            return redirect('car_rides', car_id)
+        else:
+            return redirect('ride_create')
 
     context = RequestContext(
         request,
