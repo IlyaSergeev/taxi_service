@@ -1,6 +1,5 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from TaxiService.user_groups import *
@@ -35,7 +34,7 @@ def home(request):
 def init_test_data(request):
     if request.POST:
         __add_test_info()
-        redirect('home')
+        return redirect('home')
     return render_to_response('init_test_data.html', RequestContext(request))
 
 def __add_test_info():

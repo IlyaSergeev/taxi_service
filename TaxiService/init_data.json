@@ -1,27 +1,115 @@
 [
-//  Users
   {
-    "model" : "TaxiService.User",
+    "model" : "auth.user",
     "pk" : 1,
     "fields" :
     {
-      "username" : "Kate",
-      "email" : "kate@taxiservice.ru"
+      "username" : "kate",
+      "email" : "kate@taxi-service.com",
+      "password" : "qwe"
+    }
+  },
+  {
+    "model" : "auth.user",
+    "pk" : 2,
+    "fields" :
+    {
+      "username" : "bob",
+      "email" : "bob@taxi-service.com",
+      "password" : "qwe"
+    }
+  },
+  {
+    "model" : "auth.user",
+    "pk" : 3,
+    "fields" :
+    {
+      "username" : "alex",
+      "email" : "alex@taxi-service.com",
+      "password" : "qwe"
+    }
+  },
+  {
+    "model" : "auth.user",
+    "pk" : 4,
+    "fields" :
+    {
+      "username" : "john",
+      "email" : "john@taxi-service.com",
+      "password" : "qwe"
+    }
+  },
+  {
+    "model" : "auth.user",
+    "pk" : 5,
+    "fields" :
+    {
+      "username" : "anne",
+      "email" : "anne@taxi-service.com",
+      "password" : "qwe"
+    }
+  },
 
+  {
+    "model" : "TaxiService.Car",
+    "pk" : 1,
+    "fields" :
+    {
+      "brand" : "mercedes",
+      "model" : "slk",
+      "color" : "silver",
+      "reg_number" : "ay001p"
     }
   },
   {
     "model" : "TaxiService.Car",
-    "pk": 1,
-    "fields":
+    "pk" : 2,
+    "fields" :
     {
-      "brand": "Lada",
-      "model": "2108",
-      "color": "red",
-      "reg_number": "wq212w"
+      "brand" : "bmw",
+      "model" : "x5",
+      "color" : "black",
+      "reg_number" : "ay002p"
     }
   },
   {
-
+    "model" : "TaxiService.Car",
+    "pk" : 3,
+    "fields" :
+    {
+      "brand" : "Lada",
+      "model" : "2108",
+      "color" : "white in apples",
+      "reg_number" : "ay003p"
+    }
+  },
+  {
+    "model" : "TaxiService.Car",
+    "pk" : 3,
+    "fields" :
+    {
+      "brand" : "Toyota",
+      "model" : "camry",
+      "color" : "light blue",
+      "reg_number" : "ay004p"
+    }
+  },
+  {
+    "model" : "TaxiService.Driver",
+    "pk" : 1,
+    "fields" :
+    {
+      "account" : 3,
+      "car" : 1
+    }
+  },
+  {
+    "model" : "TaxiService.Driver",
+    "pk" : 2,
+    "fields" :
+    {
+      "account" : 5,
+      "car" : 3
+    }
   }
 ]
