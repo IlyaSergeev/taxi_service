@@ -13,7 +13,7 @@ class Ride (models.Model):
     car = models.ForeignKey(Car)
     fromAddress = models.CharField(max_length=256)    # start address
     toAddress = models.CharField(max_length=256)      # stop address
-    date = models.DateTimeField(auto_now_add=True)    # date + time
+    date = models.DateTimeField()    # date + time
 
 class Driver (models.Model):
     account = models.ForeignKey(User, unique=True)
