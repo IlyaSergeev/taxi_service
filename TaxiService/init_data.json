@@ -1,4 +1,6 @@
 [
+//  NOT USE THIS INITIALIZATION!!!
+//  TODO here have problem with permissions
   {
     "model" : "auth.user",
     "pk" : 1,
