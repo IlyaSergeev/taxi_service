@@ -29,5 +29,7 @@ urlpatterns = patterns('',
     url(r'^rides/(?P<ride_id>\d+)/delete/$', ride_views.delete, name='ride_delete'),
 
     url(r'^accounts/drivers/$', driver_views.drivers, name='drivers'),
-    url(r'^drivers/(?P<user_id>\d+)/edit$', driver_views.edit, name='driver_edit'),
+    url(r'^drivers/(?P<user_id>\d+)/edit/$', driver_views.edit, name='driver_edit'),
+
+    url(r'^test-data/init/$', views.init_test_data, name='init_test_data'),
 )

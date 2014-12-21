@@ -1,0 +1,27 @@
+[
+//  Users
+  {
+    "model" : "TaxiService.User",
+    "pk" : 1,
+    "fields" :
+    {
+      "username" : "Kate",
+      "email" : "kate@taxiservice.ru"
+
+    }
+  },
+  {
+    "model" : "TaxiService.Car",
+    "pk": 1,
+    "fields":
+    {
+      "brand": "Lada",
+      "model": "2108",
+      "color": "red",
+      "reg_number": "wq212w"
+    }
+  },
+  {
+
+  }
+]

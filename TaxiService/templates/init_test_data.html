@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block headline %}
+    <h1>Test data!</h1>
+{% endblock headline %}
+
+{% block content %}
+    {% if user.is_superuser %}
+        <form action="{% url 'init_test_data' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Add test data" />
+    </form>
+    {% endif %}
+
+{% endblock %}

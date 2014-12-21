@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('fromAddress', models.CharField(max_length=256)),
                 ('toAddress', models.CharField(max_length=256)),
-                ('date', models.DateTimeField(auto_now_add=True)),
+                ('date', models.DateTimeField()),
                 ('car', models.ForeignKey(to='TaxiService.Car')),
             ],
             options={
