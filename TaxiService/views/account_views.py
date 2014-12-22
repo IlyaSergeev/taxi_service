@@ -43,7 +43,7 @@ def account_edit(request, user_id):
     if request.POST:
         password = request.POST['password']
         password2 = request.POST['confirm_password']
-        if password is not password2:
+        if password != password2:
             return redirect('account_edit', user_id)
 
         user.username = request.POST['username']
@@ -79,7 +79,7 @@ def create(request):
         password = request.POST['password']
         password2 = request.POST['confirm_password']
 
-        if password is not password2:
+        if password != password2:
             return redirect('account_create')
 
         new_user = User.objects.create_user(
